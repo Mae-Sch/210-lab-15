@@ -38,17 +38,17 @@ int main() {
 
     vector<Movie> movies;
 
-    while(!infile.eof()) {
+    while(infile.eof()) {
         Movie tempMovie;
         string tempWriter;
         int tempYear;
         string tempTitle;
-        getline(infile, tempTitle);
-        infile.ignore();
+        // eof doesn't trigger until a read actually fails, so this if is needed
+        if (!getline(infile, tempTitle))
+            break;
         infile >> tempYear;
         infile.ignore();
         getline(infile, tempWriter);
-        infile.ignore();
 
         tempMovie.setWriter(tempWriter);
         tempMovie.setYear(tempYear);
