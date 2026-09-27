@@ -26,9 +26,38 @@ class Movie {
         setw(8) << "release year: " << year << endl <<
         setw(8) << "written by: " << writer << endl;
     }
-}
+};
 
 int main() {
-    ifstream infile()
+    ifstream infile("movieData.txt");
 
+    if(!infile.is_open()) {
+        cout << "File could not be opened";
+        return -1;
+    }
+
+    vector<Movie> movies;
+
+    while(infile) {
+        Movie tempMovie;
+        string tempWriter;
+        int tempYear;
+        string tempTitle;
+        getline(infile, tempTitle);
+        infile.ignore();
+        infile >> tempYear;
+        getline(infile, tempWriter);
+        infile.ignore();
+
+        tempMovie.setWriter(tempWriter);
+        tempMovie.setYear(tempYear);
+        tempMovie.setTitle(tempTitle);
+
+        movies.push_back(tempMovie);
+        cout << "Debug: movie read";
+    }
+
+    infile.close();
+
+    return 1;
 }
