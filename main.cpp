@@ -22,9 +22,9 @@ class Movie {
 
     void print() {
         cout << 
-        setw(8) << "title: " << title << endl <<
-        setw(8) << "release year: " << year << endl <<
-        setw(8) << "written by: " << writer << endl;
+        setw(8) << "title: " << this->getTitle() << endl <<
+        setw(8) << "release year: " << this->getYear() << endl <<
+        setw(8) << "written by: " << this->getWriter() << endl;
     }
 };
 
@@ -38,26 +38,29 @@ int main() {
 
     vector<Movie> movies;
 
-    while(infile) {
+    while(!infile.eof()) {
         Movie tempMovie;
         string tempWriter;
         int tempYear;
         string tempTitle;
         getline(infile, tempTitle);
-        infile.ignore();
         infile >> tempYear;
         getline(infile, tempWriter);
-        infile.ignore();
 
         tempMovie.setWriter(tempWriter);
         tempMovie.setYear(tempYear);
         tempMovie.setTitle(tempTitle);
 
         movies.push_back(tempMovie);
-        cout << "Debug: movie read";
+        cout << "Debug: movie read\n";
     }
 
     infile.close();
+
+    for (int i = 0; i < movies.size(); ++i) {
+        movies.at(i).print();
+        cout << endl;
+    }
 
     return 1;
 }
