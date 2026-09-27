@@ -22,9 +22,9 @@ class Movie {
 
     void print() {
         cout << 
-        setw(8) << "title: " << this->getTitle() << endl <<
-        setw(8) << "release year: " << this->getYear() << endl <<
-        setw(8) << "written by: " << this->getWriter() << endl;
+        setw(15) << "title: " << this->getTitle() << endl <<
+        setw(15) << "release year: " << this->getYear() << endl <<
+        setw(15) << "written by: " << this->getWriter() << endl;
     }
 };
 
@@ -44,8 +44,11 @@ int main() {
         int tempYear;
         string tempTitle;
         getline(infile, tempTitle);
+        infile.ignore();
         infile >> tempYear;
+        infile.ignore();
         getline(infile, tempWriter);
+        infile.ignore();
 
         tempMovie.setWriter(tempWriter);
         tempMovie.setYear(tempYear);
